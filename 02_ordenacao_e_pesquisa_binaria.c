@@ -18,11 +18,32 @@
 #define TAMANHO 10
 
 void ordenar(int vetor[], int tamanho) {
-    /* TODO: implementar a ordenação */
+    for (int i = 0; i < tamanho - 1; i++) {
+        for (int j = 0; j < tamanho - 1 - i; j++) {
+            if (vetor[j] > vetor[j + 1]) {
+                int temp = vetor[j];
+                vetor[j] = vetor[j + 1];
+                vetor[j + 1] = temp;
+            }
+        }
+    }
 }
 
 int pesquisaBinaria(int vetor[], int tamanho, int valor) {
-    /* TODO: implementar a pesquisa binária */
+    int inicio = 0;
+    int fim = tamanho - 1;
+
+    while (inicio <= fim) {
+        int meio = (inicio + fim) / 2;
+
+        if (vetor[meio] == valor) {
+            return meio;
+        } else if (vetor[meio] < valor) {
+            inicio = meio + 1;
+        } else {
+            fim = meio - 1;
+        }
+    }
     return -1;
 }
 
@@ -32,14 +53,22 @@ int main() {
 
     ordenar(numeros, TAMANHO);
 
-    /* TODO: mostrar o vetor ordenado */
+    printf("Vetor ordenado: ");
+    for (int i = 0; i < TAMANHO; i++) {
+        printf("%d ", numeros[i]);
+    }
+    printf("\n");
 
     printf("Digite o numero que deseja buscar: ");
     scanf("%d", &valor);
 
     int posicao = pesquisaBinaria(numeros, TAMANHO, valor);
 
-    /* TODO: mostrar a posição ou "Numero nao encontrado" */
+    if (posicao == -1) {
+        printf("Numero nao encontrado\n");
+    } else {
+        printf("O numero esta na posicao %d\n", posicao);
+    }
 
     return 0;
 }
