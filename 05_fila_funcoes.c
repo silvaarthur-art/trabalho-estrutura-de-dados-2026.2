@@ -11,25 +11,38 @@ int inicio = 0;
 int fim = 0;
 
 int estaVazia() {
-    /* TODO: verificar se a fila está vazia */
+    if (inicio == fim) {
+        return 1;
+    }
     return 0;
 }
 
 int estaCheia() {
-    /* TODO: verificar se a fila está cheia */
+    if (fim == MAX) {
+        return 1;
+    }
     return 0;
 }
 
 void enfileirar(int valor) {
-    /* TODO: inserir o valor no fim da fila */
+    if (!estaCheia()) {
+        fila[fim] = valor;
+        fim++;
+    }
 }
 
 int desenfileirar() {
-    /* TODO: remover e retornar o valor do início */
+    if (!estaVazia()) {
+        int valor = fila[inicio];
+        inicio++;
+        return valor;
+    }
     return -1;
 }
 
 int verInicio() {
-    /* TODO: retornar o valor do início sem remover */
+    if (!estaVazia()) {
+        return fila[inicio];
+    }
     return -1;
 }
